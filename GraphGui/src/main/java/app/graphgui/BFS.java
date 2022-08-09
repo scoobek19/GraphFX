@@ -1,12 +1,30 @@
 package app.graphgui;
 
 public class BFS {
+    private static boolean isCoherent = true;
+    private static int[] visited;
+
+    public static void notCoherOut(Graph g1){
+            int l = 0;
+            System.out.println("Nieodwiedzono: ");
+            for (int i = 0; i < g1.Getgsize(); i++) {
+                if(l == 10){
+                    System.out.println();
+                    l = 0;
+                }
+
+                if (visited[i] == 0) {
+                    System.out.print(i + "  ");
+                    l++;
+                }
+            }
+            System.out.println();
+    }
 
 
-    public static int out(Graph g1) {
+    public static boolean doBFS(Graph g1) {
         int i;
-        int visited[] = new int[g1.Getgsize()];
-
+        visited = new int[g1.Getgsize()];
 
         Queue q1 = new Queue();
         q1.add(0);
@@ -23,30 +41,12 @@ public class BFS {
                 visited[g1.getWertex(v1).Getsas(i)] = 1;
             }
         }
-
-        int is_coherent = 1;
         for (i = 0; i < g1.Getgsize(); i++) {
             if (visited[i] == 0) {
-                is_coherent = 0;
+                isCoherent = false;
                 break;
             }
         }
-        if(is_coherent == 0 ){
-            int l = 0;
-            System.out.println("Nieodwiedzono: ");
-            for (i = 0; i < g1.Getgsize(); i++) {
-                if(l == 10){
-                    System.out.println();
-                    l = 0;
-                }
-
-                if (visited[i] == 0) {
-                    System.out.print(i + "  ");
-                    l++;
-                }
-            }
-        }
-        System.out.println();
-        return is_coherent;
+        return isCoherent;
     }
 }

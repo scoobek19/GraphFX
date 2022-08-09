@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane  fx:id="garenPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.graphgui.HelloController">
+<AnchorPane fx:id="garenPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.graphgui.HelloController">
    <children>
       <Label layoutX="5.0" layoutY="2.0" text="Graph size:">
          <font>
@@ -31,28 +29,20 @@
          <font>
             <Font size="10.0" />
          </font></Button>
-      <Button fx:id="gSaveButton" layoutX="397.0" layoutY="-2.0" mnemonicParsing="false" onAction="#save" text="Save:">
+      <Button fx:id="gSaveButton" layoutX="375.0" layoutY="-1.0" mnemonicParsing="false" onAction="#save" text="Save:">
          <font>
             <Font size="10.0" />
          </font></Button>
-<!--      <Canvas fx:id="gCanva" height="602.0" layoutX="1.0" layoutY="33.0" width="604.0" />-->
-      <AnchorPane fx:id="gPane" prefHeight="602.0" layoutX="1.0" layoutY="33.0" prefWidth="604.0" AnchorPane.topAnchor="25" AnchorPane.leftAnchor="0" />
-      <Button fx:id="gReadButton" layoutX="344.0" layoutY="-2.0" mnemonicParsing="false" onAction="#read" text="Read">
+      <AnchorPane fx:id="gPane" layoutX="1.0" layoutY="33.0" prefHeight="602.0" prefWidth="604.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="25" />
+      <Button fx:id="gReadButton" layoutX="331.0" layoutY="-1.0" mnemonicParsing="false" onAction="#read" text="Read">
          <font>
             <Font size="10.0" />
          </font></Button>
-      <ToggleButton ellipsisString="niespójny" layoutX="542.0" layoutY="-1.0" mnemonicParsing="false" text="Spójny">
-         <toggleGroup>
-            <ToggleGroup fx:id="niunianio" />
-         </toggleGroup>
-         <font>
-            <Font size="10.0" />
-         </font>
-      </ToggleButton>
-      <TextField fx:id="fileSaveField" layoutX="442.0" layoutY="-4.0" prefHeight="26.0" prefWidth="74.0" promptText="FileSaveName">
+      <TextField fx:id="fileSaveField" layoutX="419.0" layoutY="-5.0" prefHeight="26.0" prefWidth="74.0" promptText="FileSaveName">
          <font>
             <Font size="10.0" />
          </font>
       </TextField>
+      <CheckBox fx:id="spoj" layoutX="537.0" layoutY="1.0" mnemonicParsing="false" onAction="#coherButton" selected="true" text="Spójny" />
    </children>
 </AnchorPane>

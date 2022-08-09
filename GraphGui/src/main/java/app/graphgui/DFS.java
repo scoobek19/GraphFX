@@ -1,44 +1,48 @@
 package app.graphgui;
 
+import javafx.scene.control.Alert;
+import java.util.ArrayList;
+
 public class DFS {
-    private int[] path;
-    private double length;
-    private int n1;
+    private ArrayList<Integer> path = new ArrayList<Integer>();
+    private Aler aler1 = new Aler(Alert.AlertType.ERROR);
+    private double pathValue;
+    private static boolean isPathCorrect = true;
 
-    public DFS(){
-        this.path = new int [1];
-        this.length = 0;
-        this.n1 = 0;
-    }
+    public double getPathValue(){
+       return Math.round(pathValue * 10000.0) / 10000.0;
+   }
 
-/*    private void DoubleSize(){
-        int[] pathn = new int [path.length * 2];
-        System.arraycopy(path, 0, pathn, 0, path.length);
-        path = pathn;
-    }
+    public ArrayList<Integer> getPath(){
+    return path;
+   }
 
-    private static int get_min_double_index(double d[], int n, int q[]) {
-        int ind = -1;
-        for (int i = 0; i < n; i++) {
-            if (ind == -1 && q[i] == 0)
-                ind = i;
-            else if (d[i] < d[ind] && q[i] == 0)
-                ind = i;
+    @Override
+    public String toString(){
+
+        StringBuilder string = new StringBuilder();
+        string.append("Droga to: ");
+        for(int x = 0; x < path.size() - 1; x++){
+            string.append(path.get(x) + "<-");
         }
-        System.out.println(ind);
-        return ind;
+        string.append(path.get(path.size()-1));
+        return string.toString();
     }
-*/
 
-    public static void dij(Graph g1, int start, int end){
+
+    public void dij(Graph g1, int start, int end) {
         if(g1 == null) {
-            System.out.println("Pusty graf!");
-            System.exit(1);
+            System.err.println("Pusty graf!");
+            aler1.alertText("In Ordnung!", "Graph error", "Graph is empty!");
         }
 
         if(start < 0 || end < 0 || start > g1.Getgsize() || end > g1.Getgsize()) {
-            System.out.println("Nieprawidlowy wierzcholek poczatkowy lub/i koncowy!");
-            System.exit(1);
+            System.err.println("Beginning`s or last vertex`s value is unacceptable!");
+           System.exit(1);
+        }
+        if(start == end){
+            System.err.println("start and end is the same Vertex!");
+            aler1.alertText("In Ordnung!", "Error", "start and end is the same Vertex!" );
         }
 
         int     pam   = g1.Getgsize();
@@ -79,20 +83,42 @@ public class DFS {
             }
         }
         if(d[end] == 0){
-            System.err.println("Droga wynosi 0!!!");
-            System.exit(5);
+            System.err.println("Path equals 0!!!");
+            aler1.alertText("In Ordnung!", "Error", "Path equals 0!" );
+            isPathCorrect = false;
+            return;
+           // System.exit(5);
         }
-        System.out.println("Wartosc najkrotszej trasy wynosi: " + d[end]);
+        pathValue = d[end];
+        System.out.println("Wartosc najkrotszej trasy wynosi: " + pathValue);
         System.out.println("Trasa: ");
 
         i = end;
+        this.path.add(i);
         System.out.print(i);
         i=p[i];
         do{
-            System.out.print("<-" + i);
-            i = p[i];
+            try {
+                this.path.add(i);
+                System.out.print("<-" + i);
+                i = p[i];
+                if( i == -1) break;
+            }catch (ArrayIndexOutOfBoundsException e){
+               // aler1.alertText("In ordnung!", "Wrong path!", "Start and end vertex is the same");
+                isPathCorrect = false;
+                break;
+            }
+            catch (IndexOutOfBoundsException en){
+                //aler1.alertText("In ordnung!", "Wrong path!", "Start and end vertex is the same");
+                isPathCorrect = false;
+                break;
+            }
         }while(i != start);
-        System.out.println("<-" + i);
 
+       if( i != -1) {
+           this.path.add(i);
+           System.out.println("<-" + i);
+       }
+       System.out.println();
     }
 }

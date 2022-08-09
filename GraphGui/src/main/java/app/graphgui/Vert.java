@@ -23,6 +23,14 @@ public class Vert {
         return sas_weight[i];
     }
 
+    public boolean CheckIfAdj( int adj) {
+        for (int i = 0; i < n; i++){
+            if(sas[i] == adj)
+                return true;
+        }
+        return false;
+    }
+
     public void addSas(int sas1, double sas_weight1)
     {
         if(sas.length == n + 1)
